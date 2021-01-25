@@ -17,18 +17,25 @@ const CategoryWrapper=styled.div`
   }
 `
 
-
-export default function Category(){
+type Props={
+  category:'-'|'+',
+  onChange:(c:'-'|'+')=>void
+}
+const Category:React.FC<Props>=(props)=>{
   const categoryMap={'-':'支出','+':'收入'};
   type categoryType=keyof typeof categoryMap;
   const [categoryList]=useState<categoryType[]>(['-','+']);
-  const [category,setCategory]=useState<categoryType>('-');
+  const category=props.category;
+
+  const onToggleCategory=(c:categoryType)=>{
+    props.onChange(c);
+  }
   return (
     <CategoryWrapper>
       <ol>
         {
           categoryList.map(c=>(
-            <li key={c} className={category===c?'active':''} onClick={()=>setCategory(c)}>
+            <li key={c} className={category===c?'active':''} onClick={()=>onToggleCategory(c)}>
               <WiredButton>
                 {categoryMap[c]}
               </WiredButton>
@@ -39,3 +46,4 @@ export default function Category(){
     </CategoryWrapper>
   )
 }
+export default Category;
