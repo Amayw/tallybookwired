@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Icon from '../Icon';
+import {WiredIconButton} from 'react-wired-elements';
+import {useState} from 'react';
 
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},
@@ -24,32 +26,35 @@ const labelList = [
 
 const TagsWrapper=styled.div`
   >ul{
+    height: 50vh;
+    margin: 10px 0;
+    overflow: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
+    background-color:#fdfdfd;
     >li{
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 25%;
-      wired-icon-button{
-        >.icon{
-          width: 20px;
-          height:20px;
-        }
+      &.active{
+        color: hotpink;
+        font-weight: 800;
       }
     }
   }
 `
 export default function Tags(){
+  const [selectedId,setSelectedId]=useState<number>(2);
   return (
     <TagsWrapper>
       <ul>
         {labelList.map(label=>
-          <li key={label.id}>
-            <button><Icon name={label.icon}/></button>
+          <li key={label.id} className={selectedId===label.id?'active':''} onClick={()=>setSelectedId(label.id)}>
+            <WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>
             <span>{label.name}</span>
           </li>)}
       </ul>

@@ -5,6 +5,7 @@ import Icon from './Icon';
 
 const NavWrapper=styled.nav`
   >ul{
+    height: 8vh;
     display: flex;
     flex-direction: row;
     align-items: center;

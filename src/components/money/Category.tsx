@@ -7,8 +7,9 @@ const CategoryWrapper=styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  height:8vh;
   >ol>li{
-    margin: 12px 20px;
+    margin: 6px 20px;
     display: inline-block;
     &.active{
     background: #f7d26a;
