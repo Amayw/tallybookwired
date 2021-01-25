@@ -6989,6 +6989,18 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npm.taobao.org/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
+lit-element@^2.3.1:
+  version "2.4.0"
+  resolved "https://registry.npm.taobao.org/lit-element/download/lit-element-2.4.0.tgz#b22607a037a8fc08f5a80736dddf7f3f5d401452"
+  integrity sha1-siYHoDeo/Aj1qAc23d9/P11AFFI=
+  dependencies:
+    lit-html "^1.1.1"
+
+lit-html@^1.1.1:
+  version "1.3.0"
+  resolved "https://registry.npm.taobao.org/lit-html/download/lit-html-1.3.0.tgz#c80f3cc5793a6dea6c07172be90a70ab20e56034"
+  integrity sha1-yA88xXk6bepsBxcr6QpwqyDlYDQ=
+
 load-json-file@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/load-json-file/download/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
@@ -9281,6 +9293,13 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-wired-elements@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.npm.taobao.org/react-wired-elements/download/react-wired-elements-0.1.6.tgz#a5fafc3ce6de87789a56f3eb18e958f757aad592"
+  integrity sha1-pfr8PObeh3iaVvPrGOlY91eq1ZI=
+  dependencies:
+    wired-elements "^2.1.2"
+
 react@^17.0.1:
   version "17.0.1"
   resolved "https://registry.npm.taobao.org/react/download/react-17.0.1.tgz?cache=0&sync_timestamp=1610380756128&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
@@ -11481,6 +11500,251 @@ which@^2.0.1, which@^2.0.2:
   integrity sha1-fGqN0KY2oDJ+ELWckobu6T8/UbE=
   dependencies:
     isexe "^2.0.0"
+
+wired-button@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-button/download/wired-button-2.1.0.tgz#f41544c90449c9de741b65feb9d4ad6d07466cfd"
+  integrity sha1-9BVEyQRJyd50G2X+udStbQdGbP0=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-calendar@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/wired-calendar/download/wired-calendar-2.1.1.tgz#34c3fa1ece071c93c095725e9a25174595c4778b"
+  integrity sha1-NMP6Hs4HHJPAlXJemiUXRZXEd4s=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-card@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-card/download/wired-card-2.1.0.tgz#bb5a20129087cb1a4525f9151d1c08028a8c9ad6"
+  integrity sha1-u1ogEpCHyxpFJfkVHRwIAoqMmtY=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-checkbox@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-checkbox/download/wired-checkbox-2.1.0.tgz#410609c4461038bb29a9a2b420f5ffb3a6bbf0d3"
+  integrity sha1-QQYJxEYQOLspqaK0IPX/s6a78NM=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-combo@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-combo/download/wired-combo-2.1.0.tgz#5441bb5b68ffbcb1dba4ca92aaa877464f8ec26d"
+  integrity sha1-VEG7W2j/vLHbpMqSqqh3Rk+Owm0=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-card "^2.1.0"
+    wired-lib "^2.1.0"
+
+wired-dialog@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-dialog/download/wired-dialog-2.1.0.tgz#68c02d1523389cefef84b835ae2c7fd5f4013cf6"
+  integrity sha1-aMAtFSM4nO/vhLg1rix/1fQBPPY=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-card "^2.1.0"
+
+wired-divider@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-divider/download/wired-divider-2.1.0.tgz#d1e48aba4bc5ca55cc0dd44d9d395e3599a5e6e9"
+  integrity sha1-0eSKukvFylXMDdRNnTleNZml5uk=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-elements@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/wired-elements/download/wired-elements-2.1.2.tgz#4cc1003df899b72420e52df9dd31d543a1d19e45"
+  integrity sha1-TMEAPfiZtyQg5S353THVQ6HRnkU=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-button "^2.1.0"
+    wired-calendar "^2.1.1"
+    wired-card "^2.1.0"
+    wired-checkbox "^2.1.0"
+    wired-combo "^2.1.0"
+    wired-dialog "^2.1.0"
+    wired-divider "^2.1.0"
+    wired-fab "^2.1.0"
+    wired-icon-button "^2.1.0"
+    wired-image "^2.1.0"
+    wired-input "^2.1.1"
+    wired-item "^2.1.0"
+    wired-lib "^2.1.0"
+    wired-link "^2.1.0"
+    wired-listbox "^2.1.0"
+    wired-progress "^2.1.0"
+    wired-radio "^2.1.0"
+    wired-radio-group "^2.1.0"
+    wired-search-input "^2.1.0"
+    wired-slider "^2.1.2"
+    wired-spinner "^2.1.0"
+    wired-tab "^2.1.0"
+    wired-tabs "^2.1.1"
+    wired-textarea "^2.1.0"
+    wired-toggle "^2.1.0"
+    wired-video "^2.1.2"
+
+wired-fab@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-fab/download/wired-fab-2.1.0.tgz#bff6dcf67d106b8452ef9ade122f61cc9be39b53"
+  integrity sha1-v/bc9n0Qa4RS75reEi9hzJvjm1M=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-icon-button@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-icon-button/download/wired-icon-button-2.1.0.tgz#28d583c263f3c94cbc1e30be2acf71d11d92c6c6"
+  integrity sha1-KNWDwmPzyUy8HjC+Ks9x0R2SxsY=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-image@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-image/download/wired-image-2.1.0.tgz#a5044b7526d68f15549f0e62ae194a827e83d878"
+  integrity sha1-pQRLdSbWjxVUnw5irhlKgn6D2Hg=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-input@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/wired-input/download/wired-input-2.1.1.tgz#1f1a4abbbc2f6544251b0d92ceec831ebc650b06"
+  integrity sha1-HxpKu7wvZUQlGw2SzuyDHrxlCwY=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-item@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-item/download/wired-item-2.1.0.tgz#3c119c8de443ef93b0245bc2d65381bd3e1115a8"
+  integrity sha1-PBGcjeRD75OwJFvC1lOBvT4RFag=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-lib@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-lib/download/wired-lib-2.1.0.tgz#8e42cd513b057ffbb4c302372590d1565f13ce32"
+  integrity sha1-jkLNUTsFf/u0wwI3JZDRVl8TzjI=
+  dependencies:
+    lit-element "^2.3.1"
+
+wired-link@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-link/download/wired-link-2.1.0.tgz#0d82df22c5c5874a79171e7b8baa41df4f0d2e19"
+  integrity sha1-DYLfIsXFh0p5Fx57i6pB308NLhk=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-listbox@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-listbox/download/wired-listbox-2.1.0.tgz#48dddc29edbaf200167a0ee4714f4095a302edce"
+  integrity sha1-SN3cKe268gAWeg7kcU9AlaMC7c4=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-progress@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-progress/download/wired-progress-2.1.0.tgz#f1b40333503f820e40e42a305563d5cb19310098"
+  integrity sha1-8bQDM1A/gg5A5CowVWPVyxkxAJg=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-radio-group@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-radio-group/download/wired-radio-group-2.1.0.tgz#e5f2870803c6ca80b0af72c0082351cbb16606a4"
+  integrity sha1-5fKHCAPGyoCwr3LACCNRy7FmBqQ=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-radio@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-radio/download/wired-radio-2.1.0.tgz#00d744fd6d8ffc53a976b14a374f868ba44f7fd8"
+  integrity sha1-ANdE/W2P/FOpdrFKN0+Gi6RPf9g=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-search-input@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-search-input/download/wired-search-input-2.1.0.tgz#08edf82b9fc25017af875f9b9356cea8dcadb8e0"
+  integrity sha1-CO34K5/CUBevh1+bk1bOqNytuOA=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-slider@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/wired-slider/download/wired-slider-2.1.2.tgz#292a97bb982773f9e4bd03d14f79b49cb6df5aec"
+  integrity sha1-KSqXu5gnc/nkvQPRT3m0nLbfWuw=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-spinner@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-spinner/download/wired-spinner-2.1.0.tgz#0a7fb7ef67702c00e66b3383208b2bc09bc25faa"
+  integrity sha1-Cn+372dwLADmazODIIsrwJvCX6o=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-tab@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-tab/download/wired-tab-2.1.0.tgz#9d16579d4a85d39887e081888365e74e779fa948"
+  integrity sha1-nRZXnUqF05iH4IGIg2XnTnefqUg=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-item "^2.1.0"
+    wired-lib "^2.1.0"
+
+wired-tabs@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npm.taobao.org/wired-tabs/download/wired-tabs-2.1.1.tgz#a666dcac547792cb3e0575272425df6d94471433"
+  integrity sha1-pmbcrFR3kss+BXUnJCXfbZRHFDM=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-textarea@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-textarea/download/wired-textarea-2.1.0.tgz#68d181a150895b445f6286e50757b24140e10c61"
+  integrity sha1-aNGBoVCJW0RfYoblB1eyQUDhDGE=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-toggle@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/wired-toggle/download/wired-toggle-2.1.0.tgz#33d262db80032e21d988385b033e8fde6aa34b78"
+  integrity sha1-M9Ji24ADLiHZiDhbAz6P3mqjS3g=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-lib "^2.1.0"
+
+wired-video@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npm.taobao.org/wired-video/download/wired-video-2.1.2.tgz#327ccc5086a87854985b1cf9c2090d9fe30d60e7"
+  integrity sha1-MnzMUIaoeFSYWxz5wgkNn+MNYOc=
+  dependencies:
+    lit-element "^2.3.1"
+    wired-icon-button "^2.1.0"
+    wired-lib "^2.1.0"
+    wired-progress "^2.1.0"
+    wired-slider "^2.1.2"
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
