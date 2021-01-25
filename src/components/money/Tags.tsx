@@ -26,8 +26,8 @@ const labelList = [
 
 const TagsWrapper=styled.div`
   >ul{
-    height: 50vh;
-    margin: 10px 0;
+    height: 52vh;
+    padding: 10px 0;
     overflow: auto;
     display: flex;
     flex-direction: row;
