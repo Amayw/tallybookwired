@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Icon from '../Icon';
 import {WiredIconButton} from 'react-wired-elements';
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},
@@ -47,13 +47,21 @@ const TagsWrapper=styled.div`
     }
   }
 `
-export default function Tags(){
-  const [selectedId,setSelectedId]=useState<number>(2);
+
+type Props={
+  selectedId:number,
+  onChange:(selectedId:number)=>void;
+}
+const Tags:React.FC<Props>=(props)=>{
+  const selectedId=props.selectedId;
+  const onChangeSelectedId=(selectedId:number)=>{
+    props.onChange(selectedId);
+  }
   return (
     <TagsWrapper>
       <ul>
         {labelList.map(label=>
-          <li key={label.id} className={selectedId===label.id?'active':''} onClick={()=>setSelectedId(label.id)}>
+          <li key={label.id} className={selectedId===label.id?'active':''} onClick={()=>onChangeSelectedId(label.id)}>
             <WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>
             <span>{label.name}</span>
           </li>)}
@@ -61,3 +69,4 @@ export default function Tags(){
     </TagsWrapper>
   )
 }
+export default Tags;

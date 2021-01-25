@@ -20,8 +20,9 @@ export default function Money(){
 
   return (
     <Layout>
+      {consumption.selectedId}{consumption.category}
       <Category category={consumption.category} onChange={category=>setConsumption({...consumption,category})}/>
-      <Tags/>
+      <Tags selectedId={consumption.selectedId} onChange={selectedId=>setConsumption({...consumption,selectedId})}/>
       <NumberPad/>
     </Layout>
   )
