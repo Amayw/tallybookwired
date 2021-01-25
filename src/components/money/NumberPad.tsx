@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
-import {WiredButton, WiredInput} from 'react-wired-elements';
+import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
 
 const NumberPadWrapper=styled.div`
   height: 32vh;
@@ -36,6 +36,11 @@ const NumberPadWrapper=styled.div`
   }
 `
 const NumberPad:React.FC=()=>{
+  const [toggleOpen,setToggleOpen]=useState<boolean>(false);
+  const [date,setDate]=useState<string>('');
+  const onChangeDate=(e:CustomEvent)=>{
+    setDate(e.detail.selected);
+  }
   return (
     <NumberPadWrapper>
        <div className='inputs'>
@@ -47,7 +52,8 @@ const NumberPad:React.FC=()=>{
          <WiredButton>2</WiredButton>
          <WiredButton>3</WiredButton>
          <WiredButton>4</WiredButton>
-         <WiredButton>日历</WiredButton>
+         <WiredButton elevation={2} onClick={()=>setToggleOpen(!toggleOpen)}>日历
+         </WiredButton>
          <WiredButton>5</WiredButton>
          <WiredButton>6</WiredButton>
          <WiredButton>7</WiredButton>
@@ -59,6 +65,20 @@ const NumberPad:React.FC=()=>{
          <WiredButton>清空</WiredButton>
          <WiredButton>完成</WiredButton>
        </div>
+      <WiredDialog elevation={1} zIndex={1} open={toggleOpen}>
+        <div style={{textAlign: 'center'}}>
+          <div>
+            <WiredCalendar bgColor="white" dimmedColor="gray" elevation={1}
+              lineColor="black" locale="en" onSelect={e=>onChangeDate(e)} selectedColor="red" selectedDate={date}/>
+          </div>
+          <br />
+          <div>
+            <WiredButton  onClick={()=>setToggleOpen(!toggleOpen)}>
+              关闭
+            </WiredButton>
+          </div>
+        </div>
+      </WiredDialog>
     </NumberPadWrapper>
   )
 }
