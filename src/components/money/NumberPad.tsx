@@ -38,51 +38,71 @@ const NumberPadWrapper=styled.div`
     }
   }
 `
-const NumberPad:React.FC=()=>{
-  const [note,setNote]=useState('');
-  const [output,setOutput]=useState('0');
+
+type Props={
+  note:string,
+  amount:string,
+  date:string,
+  onChange1:(note:string)=>void,
+  onChange2:(amount:string)=>void,
+  onChange3:(date:string)=>void,
+  onOk:()=>void
+}
+const NumberPad:React.FC<Props>=(props)=>{
+  const note=props.note;
+  const output=props.amount;
   const [toggleOpen,setToggleOpen]=useState<boolean>(false);
-  const [date,setDate]=useState<string>('');
+  const date=props.date;
 
   const onChangeDate=(e:CustomEvent)=>{
-    setDate(e.detail.selected);
+    props.onChange3(e.detail.selected);
   }
 
-  const handleButton=(e: React.MouseEvent)=>{
+  const onChangeNote=(note:string)=>{
+    props.onChange1(note);
+  }
+
+
+  const onChangeAmount=(e: React.MouseEvent)=>{
     const text=(((e.target as HTMLButtonElement).textContent) as string).trim();
+    props.onChange2(handleButton(text) as string);
+  }
+
+
+  const handleButton=(text:string)=>{
     if('0123456789'.split('').indexOf(text)>=0){
       if (output === '0') {
-        setOutput(text);
+        return text;
       } else {
-        setOutput(output + text);
+        return output + text;
       }
     }else if(text==='删除'){
       if(output.length>=1){
-        setOutput(output.slice(0,-1));
+        return output.slice(0,-1);
       }
 
       if(output.length===1||output===''){
-        setOutput('0');
+        return '0';
       }
     }else if(text==='清空'){
-      setOutput('0');
+      return '0';
     }else if(text==='.'){
       if(output.indexOf('.')>=0){
         return;
       }
-      setOutput(output + text);
+      return output + text;
     }else if(text==='完成'){
-      console.log('ok');
+      props.onOk();
     }
   }
 
   return (
     <NumberPadWrapper>
        <div className='inputs'>
-         <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>setNote(e.target.value)}/>
+         <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
          <WiredInput className='right' value={output}/>
        </div>
-       <div className='buttons' onClick={handleButton}>
+       <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>
          <WiredButton>&nbsp;2&nbsp;</WiredButton>
          <WiredButton>&nbsp;3&nbsp;</WiredButton>

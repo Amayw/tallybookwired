@@ -19,7 +19,7 @@ const CategoryWrapper=styled.div`
 
 type Props={
   category:'-'|'+',
-  onChange:(c:'-'|'+')=>void
+  onChange:(category:'-'|'+')=>void
 }
 const Category:React.FC<Props>=(props)=>{
   const categoryMap={'-':'支出','+':'收入'};
