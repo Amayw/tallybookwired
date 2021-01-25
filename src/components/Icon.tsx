@@ -11,7 +11,7 @@ const SvgWrapper=styled.div`
 type Props={
   name:String;
 }
-const Icon=(props:Props)=>{
+const Icon:React.FC<Props>=(props)=>{
   return (
     <SvgWrapper>
       <svg className="icon">
