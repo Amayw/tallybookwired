@@ -88,7 +88,7 @@ const NumberPad:React.FC<Props>=(props)=>{
       return '0';
     }else if(text==='.'){
       if(output.indexOf('.')>=0){
-        return;
+        return output;
       }
       return output + text;
     }else if(text==='完成'){
@@ -131,7 +131,7 @@ const NumberPad:React.FC<Props>=(props)=>{
           <br />
           <div>
             <WiredButton  onClick={()=>setToggleOpen(!toggleOpen)}>
-              关闭
+              确定
             </WiredButton>
           </div>
         </div>
