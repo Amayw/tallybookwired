@@ -38,34 +38,34 @@ const NumberPadWrapper=styled.div`
     }
   }
 `
-
-type Props={
+type ParameterProps={
   note:string,
   amount:string,
-  date:string,
-  onChange1:(note:string)=>void,
-  onChange2:(amount:string)=>void,
-  onChange3:(date:string)=>void,
+  date:string
+}
+type Props={
+  noteAmountDate:ParameterProps,
+  onChange:(obj:Partial<ParameterProps>)=>void,
   onOk?:()=>void
 }
 const NumberPad:React.FC<Props>=(props)=>{
-  const note=props.note;
-  const output=props.amount;
+  const note=props.noteAmountDate.note;
+  const output=props.noteAmountDate.amount;
   const [toggleOpen,setToggleOpen]=useState<boolean>(false);
-  const date=props.date;
+  const date=props.noteAmountDate.date;
 
   const onChangeDate=(e:CustomEvent)=>{
-    props.onChange3(e.detail.selected);
+    props.onChange({date:e.detail.selected});
   }
 
   const onChangeNote=(note:string)=>{
-    props.onChange1(note);
+    props.onChange({note});
   }
 
 
   const onChangeAmount=(e: React.MouseEvent)=>{
     const text=(((e.target as HTMLButtonElement).textContent) as string).trim();
-    props.onChange2(handleButton(text) as string);
+    props.onChange({amount:handleButton(text) as string});
   }
 
 

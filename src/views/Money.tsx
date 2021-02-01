@@ -20,19 +20,27 @@ export default function Money(){
     date:(new Date()).toString().split(' ').slice(1,4).join(',')
   });
 
+  const onChange=(obj:Partial<typeof consumption>)=>{
+    setConsumption({
+      ...consumption,
+      ...obj
+    })
+  }
+  //note={consumption.note}
+  // onChange1={note=>onChange({note})}
+  // amount={consumption.amount}
+  // onChange2={amount=>onChange({amount})}
+  // date={consumption.date}
+  // onChange3={date=>onChange({date})}
   return (
     <Layout>
       {consumption.selectedId}{consumption.category}{consumption.date}{consumption.note}{consumption.amount}
       <Category category={consumption.category}
-                onChange={category=>setConsumption({...consumption,category})}/>
+                onChange={category=>onChange({category})}/>
       <Tags selectedId={consumption.selectedId}
-            onChange={selectedId=>setConsumption({...consumption,selectedId})}/>
-      <NumberPad note={consumption.note}
-                 onChange1={note=>setConsumption({...consumption,note})}
-                 amount={consumption.amount}
-                 onChange2={amount=>setConsumption({...consumption,amount})}
-                 date={consumption.date}
-                 onChange3={date=>setConsumption({...consumption,date})}
+            onChange={selectedId=>onChange({selectedId})}/>
+      <NumberPad noteAmountDate={{note:consumption.note,amount:consumption.amount,date:consumption.date}}
+                 onChange={obj=>onChange(obj)}
                  onOk={()=>{}}/>
     </Layout>
   )
