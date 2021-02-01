@@ -4,6 +4,7 @@ import Money from './views/Money';
 import Labels from './views/Labels';
 import Statistics from './views/Statistics';
 import NoMatch from './views/NoMatch';
+import EditLabel from './views/EditLabel';
 
 
 
@@ -14,8 +15,11 @@ function App() {
         <Route exact path="/money">
           <Money />
         </Route>
-        <Route exact path="/tags">
+        <Route exact path="/labels">
           <Labels />
+        </Route>
+        <Route exact path="/labels/:id">
+          <EditLabel />
         </Route>
         <Route exact path="/statistics">
           <Statistics />

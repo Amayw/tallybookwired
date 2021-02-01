@@ -11,7 +11,7 @@ type Consumption={
   amount:string,
   date:string
 }
-export default function Money(){
+const Money:React.FC=()=>{
   const [consumption,setConsumption]=useState<Consumption>({
     selectedId:2,
     category:'-',
@@ -40,3 +40,5 @@ export default function Money(){
     </Layout>
   )
 }
+
+export default Money

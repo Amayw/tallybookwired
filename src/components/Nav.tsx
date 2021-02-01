@@ -37,7 +37,7 @@ export default function Nav(){
     <NavWrapper>
       <ul>
         <li>
-          <NavLink activeClassName='is-active' to="/tags"><Icon name='icon-rtag'/>标签</NavLink>
+          <NavLink activeClassName='is-active' to="/labels"><Icon name='icon-rtag'/>标签</NavLink>
         </li>
         <li>
           <NavLink activeClassName='is-active' to="/money"><Icon name='icon-rmoney'/>记账</NavLink>

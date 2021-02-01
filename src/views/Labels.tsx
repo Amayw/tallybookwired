@@ -4,6 +4,7 @@ import {useTags} from '../useTags';
 import Icon from '../components/Icon';
 import {WiredIconButton} from 'react-wired-elements';
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 const HeaderWrapper=styled.div`
   background-color:#f0f8ff;
@@ -21,7 +22,7 @@ const HeaderWrapper=styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right: 16px;
     &.icon{
       width: 1.2em;
       height: 1.2em;
@@ -32,7 +33,7 @@ const LabelsWrapper=styled.div`
   >ul{
      overflow: auto;
      height: 86vh;
-     >li{
+     >li>a{
       background: #fdfdfd;
       display: flex;
       align-items: center;
@@ -49,7 +50,7 @@ const LabelsWrapper=styled.div`
   }
   
 `
-export default function Labels(){
+const Labels:React.FC=()=>{
   const {tags}=useTags();
   return(
     <Layout>
@@ -69,15 +70,17 @@ export default function Labels(){
           {
             tags.map(label=>(
               <li key={label.id}>
-                <div className='left'>
-                  <WiredIconButton lineColor={'#000'}>
-                    <Icon name={label.icon}/>
-                  </WiredIconButton>
-                  <span>{label.name}</span>
-                </div>
-                <div className='right'>
-                  <Icon name='icon-gengduo'/>
-                </div>
+                <NavLink to={'/labels/'+label.id}>
+                  <div className='left'>
+                    <WiredIconButton lineColor={'#000'}>
+                      <Icon name={label.icon}/>
+                    </WiredIconButton>
+                    <span>{label.name}</span>
+                  </div>
+                  <div className='right'>
+                    <Icon name='icon-gengduo'/>
+                  </div>
+                </NavLink>
               </li>
             ))
           }
@@ -86,3 +89,5 @@ export default function Labels(){
     </Layout>
   )
 }
+
+export default Labels;
