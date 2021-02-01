@@ -26,12 +26,7 @@ export default function Money(){
       ...obj
     })
   }
-  //note={consumption.note}
-  // onChange1={note=>onChange({note})}
-  // amount={consumption.amount}
-  // onChange2={amount=>onChange({amount})}
-  // date={consumption.date}
-  // onChange3={date=>onChange({date})}
+
   return (
     <Layout>
       {consumption.selectedId}{consumption.category}{consumption.date}{consumption.note}{consumption.amount}

@@ -1,23 +1,19 @@
 import React from "react"
 import styled from 'styled-components';
 
-const SvgWrapper=styled.div`
-  >svg{
+const SvgWrapper=styled.svg`
     width: 26px;
     height: 26px;
-  }
 `
 //这里使用的typescript
 type Props={
-  name:String;
+  name:string
 }
 const Icon:React.FC<Props>=(props)=>{
   return (
-    <SvgWrapper>
-      <svg className="icon">
+      <SvgWrapper className="icon">
         <use xlinkHref={'#'+props.name}/>
-      </svg>
-    </SvgWrapper>
+      </SvgWrapper>
   )
 }
 

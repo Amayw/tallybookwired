@@ -16,7 +16,6 @@ const Main=styled.main`
   flex-direction: column;
   height:92vh;
   flex-grow: 1;
-  overflow: auto;
   background: #f0f8ff;
 `
 export default function Layout(props:any){

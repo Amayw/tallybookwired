@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},
   {id: 1, icon: 'icon-food4', name: '餐饮'},
