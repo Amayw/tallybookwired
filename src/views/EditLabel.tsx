@@ -161,15 +161,16 @@ const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
     const {findTag,EditTag}=useTags();
     const label=findTag(parseInt(id));
-
-    const [newLabel,setNewLabel]=useState(label);
-    console.log(newLabel)
+    const [newLabel,setNewLabel]=useState(JSON.parse(JSON.stringify(label)));
+    const onUpdateTag=()=>{
+      EditTag(newLabel);
+    }
     return (
       <Layout>
           <HeaderWrapper>
             <span>返回</span>
             <span>编辑标签</span>
-            <span className='right'>保存</span>
+            <span className='right' onClick={()=>onUpdateTag()}>保存</span>
           </HeaderWrapper>
           <EditWrapper>
             <div className='left'>
