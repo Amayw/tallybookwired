@@ -5,6 +5,7 @@ import Icon from '../components/Icon';
 import {WiredIconButton} from 'react-wired-elements';
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
+import createId from '../lib/createId';
 
 const HeaderWrapper=styled.div`
   background-color:#f0f8ff;
@@ -51,7 +52,17 @@ const LabelsWrapper=styled.div`
   
 `
 const Labels:React.FC=()=>{
-  const {tags}=useTags();
+  const {tags,setTags}=useTags();
+
+  const onAddTag=()=>{
+    const name=window.prompt('请输入标签名');
+    if(name){
+      setTags([...tags,{id:createId(),name,icon:''}])
+    }else{
+      window.alert('标签名不能为空');
+    }
+
+  }
   return(
     <Layout>
       <HeaderWrapper>
@@ -61,7 +72,7 @@ const Labels:React.FC=()=>{
         <span>
           标签管理
         </span>
-        <span className='right'>
+        <span className='right'  onClick={()=>onAddTag()}>
           <Icon name='icon-jia1'/>
         </span>
       </HeaderWrapper>
