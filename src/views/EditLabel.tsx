@@ -168,8 +168,9 @@ const EditLabel:React.FC=()=>{
     const onDeleteTag=()=>{
       deleteTag(label.id);
     }
-    return (
-      <Layout>
+    if(label){
+      return (
+        <Layout>
           <HeaderWrapper>
             <span>返回</span>
             <span>编辑标签</span>
@@ -198,8 +199,13 @@ const EditLabel:React.FC=()=>{
               }
             </ul>
           </IconsWrapper>
-      </Layout>
-    )
+        </Layout>
+      )
+    }else{
+      return (
+        <div>标签不存在</div>
+      )
+    }
 }
 
 export default EditLabel;

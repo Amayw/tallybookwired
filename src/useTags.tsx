@@ -43,10 +43,7 @@ const useTags=()=>{
     setTags(tagsCopy);
   }
   const deleteTag=(id:number)=>{
-    let index=findTagIndex(id);
-    const tagsCopy=JSON.parse(JSON.stringify(tags));
-    tagsCopy.splice(index,1);
-    setTags(tagsCopy);
+    setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
   }
   return {
     tags,setTags,findTag,updateTag,deleteTag
