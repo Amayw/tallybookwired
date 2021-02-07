@@ -7,11 +7,11 @@ const SvgWrapper=styled.svg`
 `
 //这里使用的typescript
 type Props={
-  name:string
+  name:string,
 }
 const Icon:React.FC<Props>=(props)=>{
   return (
-      <SvgWrapper className="icon">
+      <SvgWrapper className='icon'>
         <use xlinkHref={'#'+props.name}/>
       </SvgWrapper>
   )
