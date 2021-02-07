@@ -7,9 +7,10 @@ type Params={
 }
 const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
-
+    const {findTag}=useTags();
+    const label=findTag(parseInt(id));
     return (
-      <div>{id}</div>
+      <div>{label.id}{label.icon}{label.name}</div>
     )
 }
 

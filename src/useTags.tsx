@@ -21,8 +21,12 @@ const labelList = [
 ];
 const useTags=()=>{
   const [tags,setTags]=useState<{id:number,icon:string,name:string}[]>(labelList);
+
+  const findTag=(id:number)=>{
+    return tags.filter(label=>label.id===id)[0];
+  }
   return {
-    tags,setTags
+    tags,setTags,findTag
   }
 }
 
