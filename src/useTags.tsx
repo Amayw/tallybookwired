@@ -40,10 +40,16 @@ const useTags=()=>{
     let index=findTagIndex(obj.id);
     const tagsCopy=JSON.parse(JSON.stringify(tags));
     tagsCopy.splice(index,1,obj);
-    setTags([...tagsCopy]);
+    setTags(tagsCopy);
+  }
+  const DeleteTag=(id:number)=>{
+    let index=findTagIndex(id);
+    const tagsCopy=JSON.parse(JSON.stringify(tags));
+    tagsCopy.splice(index,1);
+    setTags(tagsCopy);
   }
   return {
-    tags,setTags,findTag,EditTag
+    tags,setTags,findTag,EditTag,DeleteTag
   }
 }
 

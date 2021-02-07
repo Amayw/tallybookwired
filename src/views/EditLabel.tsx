@@ -159,11 +159,14 @@ type Params={
 }
 const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
-    const {findTag,EditTag}=useTags();
+    const {findTag,EditTag,DeleteTag}=useTags();
     const label=findTag(parseInt(id));
     const [newLabel,setNewLabel]=useState(JSON.parse(JSON.stringify(label)));
     const onUpdateTag=()=>{
       EditTag(newLabel);
+    }
+    const onDeleteTag=()=>{
+      DeleteTag(label.id);
     }
     return (
       <Layout>
@@ -177,7 +180,7 @@ const EditLabel:React.FC=()=>{
               <Icon name={newLabel.icon}/>
               <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
             </div>
-            <div className='delete'>
+            <div className='delete' onClick={()=>onDeleteTag()}>
               <Icon name='icon-shanchu'/>
             </div>
           </EditWrapper>
