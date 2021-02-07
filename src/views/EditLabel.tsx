@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useParams} from 'react-router-dom'
 import {useTags} from '../useTags';
 import Layout from '../components/Layout';
@@ -112,9 +112,15 @@ const EditWrapper=styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    >span{
+    >.icon{
+      width: 30px;
+      height: 30px;
+    }
+    >input{
       margin-left: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
     }
   }
   >.delete>.icon{
@@ -132,17 +138,17 @@ const IconsWrapper=styled.div`
     flex-wrap: wrap;
     width: 100vw;
     >li{
-      width:25vw;
+      width:15vw;
       display: flex;
       justify-content: center;
-      margin: 6px 0;
-      --wired-fab-bg-color:#fcfcfc;
+      margin: 6px 5vw;
+      --wired-fab-bg-color:rgba(229,235,248,0.64);
       &.active{
         --wired-fab-bg-color:pink;
       }
       >wired-fab>span>.icon{
-        width: 46px;
-        height: 46px;
+        width: 40px;
+        height: 40px;
       }
     }
   }
@@ -153,8 +159,11 @@ type Params={
 }
 const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
-    const {findTag}=useTags();
+    const {findTag,EditTag}=useTags();
     const label=findTag(parseInt(id));
+
+    const [newLabel,setNewLabel]=useState(label);
+    console.log(newLabel)
     return (
       <Layout>
           <HeaderWrapper>
@@ -164,8 +173,8 @@ const EditLabel:React.FC=()=>{
           </HeaderWrapper>
           <EditWrapper>
             <div className='left'>
-              <Icon name={label.icon}/>
-              <span>{label.name}</span>
+              <Icon name={newLabel.icon}/>
+              <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
             </div>
             <div className='delete'>
               <Icon name='icon-shanchu'/>
@@ -175,7 +184,8 @@ const EditLabel:React.FC=()=>{
             <ul>
               {
                 iconList.map(icon=>(
-                  <li className={icon.icon===label.icon?'active':''}>
+                  <li className={icon.icon===newLabel.icon?'active':''}
+                      onClick={()=>setNewLabel({...newLabel,icon:icon.icon})}>
                     <WiredFab>
                       <Icon name={icon.icon}/>
                     </WiredFab>

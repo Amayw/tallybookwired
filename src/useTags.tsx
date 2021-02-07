@@ -25,8 +25,12 @@ const useTags=()=>{
   const findTag=(id:number)=>{
     return tags.filter(label=>label.id===id)[0];
   }
+
+  const EditTag=(obj:{id:number,icon:string,name:string})=>{
+    // findTag(obj.id)
+  }
   return {
-    tags,setTags,findTag
+    tags,setTags,findTag,EditTag
   }
 }
 

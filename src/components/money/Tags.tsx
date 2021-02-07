@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Icon from '../Icon';
-import {WiredIconButton} from 'react-wired-elements';
 import React from 'react';
 import {useTags} from '../../useTags';
 
