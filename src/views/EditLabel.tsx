@@ -159,14 +159,14 @@ type Params={
 }
 const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
-    const {findTag,EditTag,DeleteTag}=useTags();
+    const {findTag,updateTag,deleteTag}=useTags();
     const label=findTag(parseInt(id));
     const [newLabel,setNewLabel]=useState(JSON.parse(JSON.stringify(label)));
     const onUpdateTag=()=>{
-      EditTag(newLabel);
+      updateTag(newLabel);
     }
     const onDeleteTag=()=>{
-      DeleteTag(label.id);
+      deleteTag(label.id);
     }
     return (
       <Layout>

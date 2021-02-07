@@ -36,20 +36,20 @@ const useTags=()=>{
     }
     return result;
   }
-  const EditTag=(obj:{id:number,icon:string,name:string})=>{
+  const updateTag=(obj:{id:number,icon:string,name:string})=>{
     let index=findTagIndex(obj.id);
     const tagsCopy=JSON.parse(JSON.stringify(tags));
     tagsCopy.splice(index,1,obj);
     setTags(tagsCopy);
   }
-  const DeleteTag=(id:number)=>{
+  const deleteTag=(id:number)=>{
     let index=findTagIndex(id);
     const tagsCopy=JSON.parse(JSON.stringify(tags));
     tagsCopy.splice(index,1);
     setTags(tagsCopy);
   }
   return {
-    tags,setTags,findTag,EditTag,DeleteTag
+    tags,setTags,findTag,updateTag,deleteTag
   }
 }
 
