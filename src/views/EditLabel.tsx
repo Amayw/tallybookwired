@@ -161,14 +161,17 @@ const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
     const {findTag,updateTag,deleteTag}=useTags();
     const label=findTag(parseInt(id));
-    const [newLabel,setNewLabel]=useState(JSON.parse(JSON.stringify(label)));
+    const labelCopy=label?JSON.parse(JSON.stringify(label)):{};
+    const [newLabel,setNewLabel]=useState(labelCopy);
+
+    console.log(newLabel)
     const onUpdateTag=()=>{
       updateTag(newLabel);
     }
     const onDeleteTag=()=>{
       deleteTag(label.id);
     }
-    if(label){
+
       return (
         <Layout>
           <HeaderWrapper>
@@ -176,36 +179,38 @@ const EditLabel:React.FC=()=>{
             <span>编辑标签</span>
             <span className='right' onClick={()=>onUpdateTag()}>保存</span>
           </HeaderWrapper>
-          <EditWrapper>
-            <div className='left'>
-              <Icon name={newLabel.icon}/>
-              <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
-            </div>
-            <div className='delete' onClick={()=>onDeleteTag()}>
-              <Icon name='icon-shanchu'/>
-            </div>
-          </EditWrapper>
-          <IconsWrapper>
-            <ul>
-              {
-                iconList.map(icon=>(
-                  <li className={icon.icon===newLabel.icon?'active':''}
-                      onClick={()=>setNewLabel({...newLabel,icon:icon.icon})}>
-                    <WiredFab>
-                      <Icon name={icon.icon}/>
-                    </WiredFab>
-                  </li>
-                ))
-              }
-            </ul>
-          </IconsWrapper>
+          {
+            label?
+              <>
+                <EditWrapper>
+                  <div className='left'>
+                    <Icon name={newLabel.icon}/>
+                    <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
+                  </div>
+                  <div className='delete' onClick={()=>onDeleteTag()}>
+                    <Icon name='icon-shanchu'/>
+                  </div>
+                </EditWrapper>
+                <IconsWrapper>
+                  <ul>
+                    {
+                      iconList.map(icon=>(
+                        <li className={icon.icon===newLabel.icon?'active':''}
+                            onClick={()=>setNewLabel({...newLabel,icon:icon.icon})} key={icon.id}>
+                          <WiredFab>
+                            <Icon name={icon.icon}/>
+                          </WiredFab>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </IconsWrapper>
+              </>
+            :
+              <div>标签不存在</div>
+          }
         </Layout>
       )
-    }else{
-      return (
-        <div>标签不存在</div>
-      )
-    }
 }
 
 export default EditLabel;

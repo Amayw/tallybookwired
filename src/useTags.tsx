@@ -26,21 +26,10 @@ const useTags=()=>{
     return tags.filter(label=>label.id===id)[0];
   }
 
-  const findTagIndex=(id:number)=>{
-    let result=-1;
-    for(let i=0;i<tags.length;i++){
-      if(tags[i].id===id){
-        result=i;
-        break;
-      }
-    }
-    return result;
-  }
   const updateTag=(obj:{id:number,icon:string,name:string})=>{
-    let index=findTagIndex(obj.id);
-    const tagsCopy=JSON.parse(JSON.stringify(tags));
-    tagsCopy.splice(index,1,obj);
-    setTags(tagsCopy);
+    setTags(tags.map(tag=>{
+      return tag.id === obj.id ? obj : tag;
+    }))
   }
   const deleteTag=(id:number)=>{
     setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
