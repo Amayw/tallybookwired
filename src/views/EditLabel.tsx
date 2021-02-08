@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useParams,useHistory} from 'react-router-dom'
 import {useTags} from '../useTags';
 import Layout from '../components/Layout';
@@ -95,7 +95,7 @@ const HeaderWrapper=styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 10px;
-  >.right{
+  >.left{
     color: #f7d26a;
   }
 `
@@ -160,17 +160,21 @@ type Params={
 const EditLabel:React.FC=()=>{
     let { id }=useParams<Params>();
     const {findTag,updateTag,deleteTag}=useTags();
-    const label=findTag(parseInt(id));
-    const labelCopy=label?JSON.parse(JSON.stringify(label)):{};
-    const [newLabel,setNewLabel]=useState(labelCopy);
-    const history=useHistory();
-    const onUpdateTag=()=>{
-      updateTag(newLabel);
+    let label=findTag(parseInt(id));
+
+
+    const onChangeTagName=(e:React.ChangeEvent<HTMLInputElement>)=>{
+      updateTag(label.id,{name:e.target.value});
+    }
+    const onChangeSvg=(icon:string)=>{
+      updateTag(label.id,{icon});
     }
     const onDeleteTag=()=>{
       deleteTag(label.id);
+      onBack();
     }
 
+    const history=useHistory();
     const onBack=()=>{
       history.goBack();
     }
@@ -178,17 +182,17 @@ const EditLabel:React.FC=()=>{
     return (
       <Layout>
         <HeaderWrapper>
-          <span onClick={()=>onBack()}>返回</span>
+          <span className='left' onClick={()=>onBack()}>返回</span>
           <span>编辑标签</span>
-          <span className='right' onClick={()=>onUpdateTag()}>保存</span>
+          <span></span>
         </HeaderWrapper>
         {
           label?
-            <>
+            <div>
               <EditWrapper>
                 <div className='left'>
-                  <Icon name={newLabel.icon}/>
-                  <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
+                  <Icon name={label.icon}/>
+                  <input value={label.name} onChange={(e)=>onChangeTagName(e)}/>
                 </div>
                 <div className='delete' onClick={()=>onDeleteTag()}>
                   <Icon name='icon-shanchu'/>
@@ -198,8 +202,8 @@ const EditLabel:React.FC=()=>{
                 <ul>
                   {
                     iconList.map(icon=>(
-                      <li className={icon.icon===newLabel.icon?'active':''}
-                          onClick={()=>setNewLabel({...newLabel,icon:icon.icon})} key={icon.id}>
+                      <li className={icon.icon===label.icon?'active':''}
+                          onClick={()=>onChangeSvg(icon.icon)} key={icon.id}>
                         <WiredFab>
                           <Icon name={icon.icon}/>
                         </WiredFab>
@@ -208,7 +212,7 @@ const EditLabel:React.FC=()=>{
                   }
                 </ul>
               </IconsWrapper>
-            </>
+            </div>
           :
             <div>标签不存在</div>
         }

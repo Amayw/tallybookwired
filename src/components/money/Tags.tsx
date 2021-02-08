@@ -6,19 +6,20 @@ import {useTags} from '../../useTags';
 const TagsWrapper=styled.div`
   >ul{
     height: 52vh;
-    padding: 10px 0;
-    overflow: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     background-color:#fdfdfd;
+    overflow: auto;
+    padding: 10px 0;
     >li{
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       width: 25%;
+      padding: 20px 0;
       &.active{
         color: hotpink;
         font-weight: 800;

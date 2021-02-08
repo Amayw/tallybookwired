@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
 import createId from '../lib/createId';
 
+
+
 const HeaderWrapper=styled.div`
   background-color:#f0f8ff;
   height: 6vh;
@@ -53,7 +55,6 @@ const LabelsWrapper=styled.div`
 `
 const Labels:React.FC=()=>{
   const {tags,addTag}=useTags();
-
   const onAddTag=()=>{
     const name=window.prompt('请输入标签名');
     if(name){

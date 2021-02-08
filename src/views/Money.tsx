@@ -29,7 +29,6 @@ const Money:React.FC=()=>{
 
   return (
     <Layout>
-      {consumption.selectedId}{consumption.category}{consumption.date}{consumption.note}{consumption.amount}
       <Category category={consumption.category}
                 onChange={category=>onChange({category})}/>
       <Tags selectedId={consumption.selectedId}

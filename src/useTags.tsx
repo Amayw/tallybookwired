@@ -1,4 +1,6 @@
 import {useEffect, useState} from 'react';
+import {useUpdate} from './hooks/useUpdate';
+
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},
   {id: 1, icon: 'icon-food4', name: '餐饮'},
@@ -20,25 +22,40 @@ const labelList = [
   {id: 17, icon: 'icon-digital2', name: '数码'}
 ];
 const useTags=()=>{
-  const [tags,setTags]=useState<{id:number,icon:string,name:string}[]>(labelList);
-
+  const [tags,setTags]=useState<{id:number,icon:string,name:string}[]>([]);
   useEffect(()=>{
-    window.localStorage.setItem('allTags',JSON.stringify(tags));
+    let value=JSON.parse(window.localStorage.getItem('reactAllTags') ||'[]');
+    if(value.length===0){
+      value=labelList;
+    }
+    setTags(value);
+  },[]);
+
+  useUpdate(()=>{
+    console.log('存数据');
+    window.localStorage.setItem('reactAllTags',JSON.stringify(tags));
   },[tags])
-  const findTag=(id:number)=>{
-    return tags.filter(label=>label.id===id)[0];
-  }
+
+  const findTag=(id:number)=> tags.filter(label=>label.id===id)[0];
+
 
   const addTag=(obj:{id:number,icon:string,name:string})=>{
+    if((obj.name).length>4){
+      window.alert('标签名长度不大于4哦~');
+      return;
+    }
     setTags([...tags,obj]);
   }
 
-  const updateTag=(obj:{id:number,icon:string,name:string})=>{
-    setTags(tags.map(tag=>{
-      return tag.id === obj.id ? obj : tag;
-    }))
+  const updateTag=(id:number,obj:{icon?:string,name?:string})=>{
+    if(obj.name&&(obj.name).length>4){
+      window.alert('标签名长度不大于4哦~');
+      return;
+    }
+    setTags(tags.map(tag=>tag.id === id ? {...tag,...obj} : tag))
   }
   const deleteTag=(id:number)=>{
+    console.log('here');
     setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
   }
   return {

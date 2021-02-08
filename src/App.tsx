@@ -6,8 +6,6 @@ import Statistics from './views/Statistics';
 import NoMatch from './views/NoMatch';
 import EditLabel from './views/EditLabel';
 
-
-
 function App() {
   return (
     <HashRouter>
