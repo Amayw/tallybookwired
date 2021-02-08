@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},
   {id: 1, icon: 'icon-food4', name: '餐饮'},
@@ -22,6 +22,9 @@ const labelList = [
 const useTags=()=>{
   const [tags,setTags]=useState<{id:number,icon:string,name:string}[]>(labelList);
 
+  useEffect(()=>{
+    window.localStorage.setItem('allTags',JSON.stringify(tags));
+  },[tags])
   const findTag=(id:number)=>{
     return tags.filter(label=>label.id===id)[0];
   }
