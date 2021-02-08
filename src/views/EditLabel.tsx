@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom'
+import {useParams,useHistory} from 'react-router-dom'
 import {useTags} from '../useTags';
 import Layout from '../components/Layout';
 import Icon from '../components/Icon';
@@ -163,8 +163,7 @@ const EditLabel:React.FC=()=>{
     const label=findTag(parseInt(id));
     const labelCopy=label?JSON.parse(JSON.stringify(label)):{};
     const [newLabel,setNewLabel]=useState(labelCopy);
-
-    console.log(newLabel)
+    const history=useHistory();
     const onUpdateTag=()=>{
       updateTag(newLabel);
     }
@@ -172,45 +171,49 @@ const EditLabel:React.FC=()=>{
       deleteTag(label.id);
     }
 
-      return (
-        <Layout>
-          <HeaderWrapper>
-            <span>返回</span>
-            <span>编辑标签</span>
-            <span className='right' onClick={()=>onUpdateTag()}>保存</span>
-          </HeaderWrapper>
-          {
-            label?
-              <>
-                <EditWrapper>
-                  <div className='left'>
-                    <Icon name={newLabel.icon}/>
-                    <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
-                  </div>
-                  <div className='delete' onClick={()=>onDeleteTag()}>
-                    <Icon name='icon-shanchu'/>
-                  </div>
-                </EditWrapper>
-                <IconsWrapper>
-                  <ul>
-                    {
-                      iconList.map(icon=>(
-                        <li className={icon.icon===newLabel.icon?'active':''}
-                            onClick={()=>setNewLabel({...newLabel,icon:icon.icon})} key={icon.id}>
-                          <WiredFab>
-                            <Icon name={icon.icon}/>
-                          </WiredFab>
-                        </li>
-                      ))
-                    }
-                  </ul>
-                </IconsWrapper>
-              </>
-            :
-              <div>标签不存在</div>
-          }
-        </Layout>
-      )
+    const onBack=()=>{
+      history.goBack();
+    }
+
+    return (
+      <Layout>
+        <HeaderWrapper>
+          <span onClick={()=>onBack()}>返回</span>
+          <span>编辑标签</span>
+          <span className='right' onClick={()=>onUpdateTag()}>保存</span>
+        </HeaderWrapper>
+        {
+          label?
+            <>
+              <EditWrapper>
+                <div className='left'>
+                  <Icon name={newLabel.icon}/>
+                  <input value={newLabel.name} onChange={(e)=>setNewLabel({...newLabel,name:e.target.value})}/>
+                </div>
+                <div className='delete' onClick={()=>onDeleteTag()}>
+                  <Icon name='icon-shanchu'/>
+                </div>
+              </EditWrapper>
+              <IconsWrapper>
+                <ul>
+                  {
+                    iconList.map(icon=>(
+                      <li className={icon.icon===newLabel.icon?'active':''}
+                          onClick={()=>setNewLabel({...newLabel,icon:icon.icon})} key={icon.id}>
+                        <WiredFab>
+                          <Icon name={icon.icon}/>
+                        </WiredFab>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </IconsWrapper>
+            </>
+          :
+            <div>标签不存在</div>
+        }
+      </Layout>
+    )
 }
 
 export default EditLabel;
