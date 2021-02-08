@@ -52,12 +52,12 @@ const LabelsWrapper=styled.div`
   
 `
 const Labels:React.FC=()=>{
-  const {tags,setTags}=useTags();
+  const {tags,addTag}=useTags();
 
   const onAddTag=()=>{
     const name=window.prompt('请输入标签名');
     if(name){
-      setTags([...tags,{id:createId(),name,icon:''}])
+      addTag({id:createId(),name,icon:'icon-fruit8'});
     }else{
       window.alert('标签名不能为空');
     }

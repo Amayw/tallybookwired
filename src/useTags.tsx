@@ -26,6 +26,10 @@ const useTags=()=>{
     return tags.filter(label=>label.id===id)[0];
   }
 
+  const addTag=(obj:{id:number,icon:string,name:string})=>{
+    setTags([...tags,obj]);
+  }
+
   const updateTag=(obj:{id:number,icon:string,name:string})=>{
     setTags(tags.map(tag=>{
       return tag.id === obj.id ? obj : tag;
@@ -35,7 +39,7 @@ const useTags=()=>{
     setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
   }
   return {
-    tags,setTags,findTag,updateTag,deleteTag
+    tags,setTags,findTag,updateTag,deleteTag,addTag
   }
 }
 
