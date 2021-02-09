@@ -32,30 +32,23 @@ const useTags=()=>{
   },[]);
 
   useUpdate(()=>{
-    console.log('存数据');
     window.localStorage.setItem('reactAllTags',JSON.stringify(tags));
-  },[tags])
+  },tags)
 
-  const findTag=(id:number)=> tags.filter(label=>label.id===id)[0];
+  // const findTag=(id:number)=> tags.filter(label=>label.id===id)[0];
+  const findTag=(id:number)=>{
+    return tags.filter(item=>item.id===id)[0];
+  };
 
 
   const addTag=(obj:{id:number,icon:string,name:string})=>{
-    if((obj.name).length>4){
-      window.alert('标签名长度不大于4哦~');
-      return;
-    }
     setTags([...tags,obj]);
   }
 
-  const updateTag=(id:number,obj:{icon?:string,name?:string})=>{
-    if(obj.name&&(obj.name).length>4){
-      window.alert('标签名长度不大于4哦~');
-      return;
-    }
-    setTags(tags.map(tag=>tag.id === id ? {...tag,...obj} : tag))
+  const updateTag=(obj:{id:number,icon:string,name:string})=>{
+    setTags(tags.map(tag=>tag.id === obj.id ? {...obj} : tag))
   }
   const deleteTag=(id:number)=>{
-    console.log('here');
     setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
   }
   return {

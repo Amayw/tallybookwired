@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {useParams,useHistory} from 'react-router-dom'
 import {useTags} from '../useTags';
 import Layout from '../components/Layout';
@@ -157,17 +157,17 @@ const IconsWrapper=styled.div`
 type Params={
     id:string
 }
+
 const EditLabel:React.FC=()=>{
-    let { id }=useParams<Params>();
     const {findTag,updateTag,deleteTag}=useTags();
+    let {id}=useParams<Params>();
     let label=findTag(parseInt(id));
 
-
-    const onChangeTagName=(e:React.ChangeEvent<HTMLInputElement>)=>{
-      updateTag(label.id,{name:e.target.value});
+    const onChangeTagName=(e:ChangeEvent<HTMLInputElement>)=>{
+      updateTag({...label,name:e.target.value});
     }
     const onChangeSvg=(icon:string)=>{
-      updateTag(label.id,{icon});
+      updateTag({...label,icon});
     }
     const onDeleteTag=()=>{
       deleteTag(label.id);
@@ -186,13 +186,11 @@ const EditLabel:React.FC=()=>{
           <span>编辑标签</span>
           <span></span>
         </HeaderWrapper>
-        {
-          label?
             <div>
               <EditWrapper>
                 <div className='left'>
-                  <Icon name={label.icon}/>
-                  <input value={label.name} onChange={(e)=>onChangeTagName(e)}/>
+                  <Icon name={label&&label.icon}/>
+                  <input placeholder='标签名' value={label?label.name:'标签名'} onChange={e=>onChangeTagName(e)}/>
                 </div>
                 <div className='delete' onClick={()=>onDeleteTag()}>
                   <Icon name='icon-shanchu'/>
@@ -202,7 +200,7 @@ const EditLabel:React.FC=()=>{
                 <ul>
                   {
                     iconList.map(icon=>(
-                      <li className={icon.icon===label.icon?'active':''}
+                      <li className={icon.icon===(label&&label.icon)?'active':''}
                           onClick={()=>onChangeSvg(icon.icon)} key={icon.id}>
                         <WiredFab>
                           <Icon name={icon.icon}/>
@@ -213,9 +211,6 @@ const EditLabel:React.FC=()=>{
                 </ul>
               </IconsWrapper>
             </div>
-          :
-            <div>标签不存在</div>
-        }
       </Layout>
     )
 }

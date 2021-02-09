@@ -33,11 +33,11 @@ const HeaderWrapper=styled.div`
   }
 `
 const LabelsWrapper=styled.div`
+  background: #fdfdfd;
   >ul{
      overflow: auto;
      height: 86vh;
      >li>a{
-      background: #fdfdfd;
       display: flex;
       align-items: center;
       justify-content: space-between;
