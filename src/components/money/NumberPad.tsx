@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
 
@@ -31,7 +31,9 @@ const NumberPadWrapper=styled.div`
     align-items: center;
     justify-content: space-around;
     >wired-button{
-      width: 20%;
+      border: 1px solid red;
+      width: 16vw;
+      margin:0 2vw;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -65,9 +67,15 @@ const NumberPad:React.FC<Props>=(props)=>{
 
   const onChangeAmount=(e: React.MouseEvent)=>{
     const text=(((e.target as HTMLButtonElement).textContent) as string).trim();
+    if(text===undefined){
+      return;
+    }
     props.onChange({amount:handleButton(text) as string});
   }
 
+  const onChangeDisplayAmount=(amount:string)=>{
+    console.log(amount);
+  }
 
   const handleButton=(text:string)=>{
     if('0123456789'.split('').indexOf(text)>=0){
@@ -96,13 +104,18 @@ const NumberPad:React.FC<Props>=(props)=>{
         props.onOk();
       }
     }
+
+    return output;
   }
 
+  useEffect(()=>{
+    console.log('here');
+  },[output])
   return (
     <NumberPadWrapper>
        <div className='inputs'>
          <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
-         <WiredInput className='right' value={output}/>
+         <WiredInput className='right' value={output} onChange={e=>onChangeDisplayAmount(e.target.value)}></WiredInput>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>
