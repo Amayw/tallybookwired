@@ -20,7 +20,11 @@ const useConsumptions=()=>{
   },[consumptions])
 
   const addConsumption=(consumption:Consumption)=>{
+    if(consumption.amount==='0'){
+      return false;
+    }
     setConsumptions([...consumptions,consumption]);
+    return true;
   }
 
   return {addConsumption}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
 
@@ -13,7 +13,7 @@ const NumberPadWrapper=styled.div`
     margin: 6px 10px;
     display: flex;
     flex-direction: row;
-    max-width: 500px;
+    width: 90vw;
     >.left{
       width: 60vw;
       padding: 4px;
@@ -21,9 +21,6 @@ const NumberPadWrapper=styled.div`
     >.right{
       width: 30vw;
       padding: 4px;
-      &:disabled{
-        background-color:pink;
-      }
     }
   }
   >.buttons{
@@ -34,7 +31,6 @@ const NumberPadWrapper=styled.div`
     align-items: center;
     justify-content: space-around;
     >wired-button{
-      border: 1px solid red;
       width: 16vw;
       margin:0 2vw;
       display: flex;
@@ -59,14 +55,13 @@ const NumberPad:React.FC<Props>=(props)=>{
   const [toggleOpen,setToggleOpen]=useState<boolean>(false);
   const date=props.noteAmountDate.date;
 
-  const onChangeDate=(e:CustomEvent)=>{
-    props.onChange({date:e.detail.selected});
+  const onChangeDate=(date:string)=>{
+    props.onChange({date});
   }
 
   const onChangeNote=(note:string)=>{
     props.onChange({note});
   }
-
 
   const onChangeAmount=(e: React.MouseEvent)=>{
     const text=(((e.target as HTMLButtonElement).textContent) as string).trim();
@@ -75,7 +70,6 @@ const NumberPad:React.FC<Props>=(props)=>{
     }
     props.onChange({amount:handleButton(text) as string});
   }
-
 
   const handleButton=(text:string)=>{
     if('0123456789'.split('').indexOf(text)>=0){
@@ -109,14 +103,11 @@ const NumberPad:React.FC<Props>=(props)=>{
     return output;
   }
 
-  useEffect(()=>{
-    console.log('here');
-  },[output])
   return (
     <NumberPadWrapper>
        <div className='inputs'>
-         <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
-         <WiredInput className='right' value={output} disabled></WiredInput>
+         <input className='left' placeholder='请输入备注' value={note} onChange={e=>onChangeNote(e.target.value)}/>
+         <input  className='right' value={output} disabled/>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>
@@ -140,7 +131,7 @@ const NumberPad:React.FC<Props>=(props)=>{
         <div style={{textAlign: 'center'}}>
           <div>
             <WiredCalendar bgColor="white" dimmedColor="gray" elevation={1}
-              lineColor="black" locale="en" onSelect={onChangeDate} selectedColor="red" selectedDate={date}/>
+              lineColor="black" locale="en" onSelect={e=>onChangeDate(e.detail.selected)} selectedColor="red" selectedDate={date}/>
           </div>
           <br />
           <div>

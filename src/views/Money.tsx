@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from '../components/Layout';
 import Category from '../components/money/Category';
 import Tags from '../components/money/Tags';
@@ -14,15 +14,17 @@ type Consumption={
   amount:string,
   date:string
 }
+const defaultFormData:Consumption={
+  selectedId:2,
+  category:'-',
+  note:'',
+  amount:'0',
+  date:(new Date()).toString().split(' ').slice(1,4).join(',')
+}
+
 const Money:React.FC=()=>{
 
-  const [consumption,setConsumption]=useState<Consumption>({
-    selectedId:2,
-    category:'-',
-    note:'',
-    amount:'0',
-    date:(new Date()).toString().split(' ').slice(1,4).join(',')
-  });
+  const [consumption,setConsumption]=useState<Consumption>(defaultFormData);
 
   const onChange=(obj:Partial<typeof consumption>)=>{
     setConsumption({
@@ -31,9 +33,18 @@ const Money:React.FC=()=>{
     })
   }
 
+  useEffect(()=>{
+    console.log('money页面渲染了');
+  },[])
+
   const {addConsumption}=useConsumptions();
   const onAddConsumption=()=>{
-    addConsumption(consumption);
+    if(addConsumption(consumption)){
+      window.alert('记账成功');
+      setConsumption(defaultFormData);
+    }else{
+      window.alert('请输入记账金额');
+    }
   }
 
   return (
