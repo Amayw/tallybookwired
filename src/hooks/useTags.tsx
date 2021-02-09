@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {useUpdate} from './hooks/useUpdate';
+import {useUpdate} from './useUpdate';
 
 const labelList = [
   {id: 0, icon: 'icon-clothes5', name: '服饰'},

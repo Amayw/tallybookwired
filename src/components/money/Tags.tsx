@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Icon from '../Icon';
 import React from 'react';
-import {useTags} from '../../useTags';
+import {useTags} from '../../hooks/useTags';
+import {WiredIconButton} from 'react-wired-elements';
 
 const TagsWrapper=styled.div`
   >ul{
@@ -43,8 +44,7 @@ const Tags:React.FC<Props>=(props)=>{
       <ul>
         {tags.map(label=>
           <li key={label.id} className={selectedId===label.id?'active':''} onClick={()=>onChangeSelectedId(label.id)}>
-            <Icon name={label.icon}/>
-            {/*<WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>*/}
+            <WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>
             <span>{label.name}</span>
           </li>)}
       </ul>

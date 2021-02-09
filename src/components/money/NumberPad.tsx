@@ -21,6 +21,9 @@ const NumberPadWrapper=styled.div`
     >.right{
       width: 30vw;
       padding: 4px;
+      &:disabled{
+        background-color:pink;
+      }
     }
   }
   >.buttons{
@@ -73,9 +76,6 @@ const NumberPad:React.FC<Props>=(props)=>{
     props.onChange({amount:handleButton(text) as string});
   }
 
-  const onChangeDisplayAmount=(amount:string)=>{
-    console.log(amount);
-  }
 
   const handleButton=(text:string)=>{
     if('0123456789'.split('').indexOf(text)>=0){
@@ -102,6 +102,7 @@ const NumberPad:React.FC<Props>=(props)=>{
     }else if(text==='完成'){
       if(props.onOk){
         props.onOk();
+
       }
     }
 
@@ -115,7 +116,7 @@ const NumberPad:React.FC<Props>=(props)=>{
     <NumberPadWrapper>
        <div className='inputs'>
          <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
-         <WiredInput className='right' value={output} onChange={e=>onChangeDisplayAmount(e.target.value)}></WiredInput>
+         <WiredInput className='right' value={output} disabled></WiredInput>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>
