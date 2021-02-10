@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
+import {WiredButton, WiredCalendar, WiredCard, WiredDialog, WiredImage, WiredInput} from 'react-wired-elements';
 
 const NumberPadWrapper=styled.div`
   height: 32vh;
@@ -106,8 +106,8 @@ const NumberPad:React.FC<Props>=(props)=>{
   return (
     <NumberPadWrapper>
        <div className='inputs'>
-         <input className='left' placeholder='请输入备注' value={note} onChange={e=>onChangeNote(e.target.value)}/>
-         <input  className='right' value={output} disabled/>
+         <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
+         <WiredInput className='right' value={output}></WiredInput>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>

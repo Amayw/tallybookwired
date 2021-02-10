@@ -44,8 +44,8 @@ const Tags:React.FC<Props>=(props)=>{
       <ul>
         {tags.map(label=>
           <li key={label.id} className={selectedId===label.id?'active':''} onClick={()=>onChangeSelectedId(label.id)}>
-            {/*<WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>*/}
-            <Icon name={label.icon}/>
+            <WiredIconButton lineColor={selectedId===label.id?'hotpink':'#000'} ><Icon name={label.icon}/></WiredIconButton>
+            {/*<Icon name={label.icon}/>*/}
             <span>{label.name}</span>
           </li>)}
       </ul>

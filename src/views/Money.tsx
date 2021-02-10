@@ -15,7 +15,7 @@ type Consumption={
   date:string
 }
 const defaultFormData:Consumption={
-  selectedId:2,
+  selectedId:8,
   category:'-',
   note:'',
   amount:'0',
@@ -35,7 +35,8 @@ const Money:React.FC=()=>{
 
   useEffect(()=>{
     console.log('money页面渲染了');
-  },[])
+    console.log(consumption);
+  },[consumption])
 
   const {addConsumption}=useConsumptions();
   const onAddConsumption=()=>{
