@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {WiredButton, WiredCalendar, WiredCard, WiredDialog, WiredImage, WiredInput} from 'react-wired-elements';
+import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
 
 const NumberPadWrapper=styled.div`
   height: 32vh;
@@ -16,12 +16,20 @@ const NumberPadWrapper=styled.div`
     width: 90vw;
     >.left{
       width: 60vw;
-      padding: 4px;
+      padding: 8px;
+      border: none;
+      outline: none;
     }
     >.right{
       width: 30vw;
       padding: 4px;
+      background-color:#fff;
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: nowrap;
+      overflow:auto;
     }
+
   }
   >.buttons{
     flex-grow: 1;
@@ -47,19 +55,20 @@ type ParameterProps={
 type Props={
   noteAmountDate:ParameterProps,
   onChange:(obj:Partial<ParameterProps>)=>void,
-  onOk?:()=>void
+  onOk:()=>void
 }
 const NumberPad:React.FC<Props>=(props)=>{
-  const note=props.noteAmountDate.note;
-  const output=props.noteAmountDate.amount;
+  let [note,setNote]=useState(props.noteAmountDate.note);
+  let output=props.noteAmountDate.amount;
   const [toggleOpen,setToggleOpen]=useState<boolean>(false);
-  const date=props.noteAmountDate.date;
+  let date=props.noteAmountDate.date;
 
   const onChangeDate=(date:string)=>{
     props.onChange({date});
   }
 
   const onChangeNote=(note:string)=>{
+    setNote(note);
     props.onChange({note});
   }
 
@@ -68,7 +77,12 @@ const NumberPad:React.FC<Props>=(props)=>{
     if(text===undefined){
       return;
     }
-    props.onChange({amount:handleButton(text) as string});
+    const output=handleButton(text);
+    if(output.length>10){
+      alert('不能输入了哦，你也太会花钱了');
+      return;
+    }
+    props.onChange({amount:output as string});
   }
 
   const handleButton=(text:string)=>{
@@ -94,20 +108,21 @@ const NumberPad:React.FC<Props>=(props)=>{
       }
       return output + text;
     }else if(text==='完成'){
-      if(props.onOk){
+      console.log('before');
+      console.log(props.noteAmountDate);
         props.onOk();
+        setNote('')
+        output='0';
 
-      }
     }
-
     return output;
   }
 
   return (
     <NumberPadWrapper>
        <div className='inputs'>
-         <WiredInput className='left' placeholder='请输入备注' value={note} onBlur={e=>onChangeNote(e.target.value)}/>
-         <WiredInput className='right' value={output}></WiredInput>
+         <input className='left' placeholder='请输入备注' value={note} onChange={e=>onChangeNote(e.target.value)}/>
+         <div className='right'>{`${output}元`}</div>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
          <WiredButton>&nbsp;1&nbsp;</WiredButton>

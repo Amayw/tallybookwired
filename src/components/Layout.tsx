@@ -8,7 +8,6 @@ const LayoutWrapper=styled.div`
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
-  max-width: 520px;
   margin: 0 auto;
 `
 const Main=styled.main`

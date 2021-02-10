@@ -17,7 +17,7 @@ const useConsumptions=()=>{
 
   useUpdate(()=>{
     window.localStorage.setItem('reactAllConsumptions',JSON.stringify(consumptions));
-  },[consumptions])
+  },consumptions)
 
   const addConsumption=(consumption:Consumption)=>{
     if(consumption.amount==='0'){
