@@ -51,7 +51,7 @@ const Money:React.FC=()=>{
                 onChange={category=>onChange({category})}/>
       <Tags selectedId={consumption.selectedId}
             onChange={selectedId=>onChange({selectedId})}/>
-      <NumberPad noteAmountDate={{note:consumption.note,amount:consumption.amount,date:consumption.date}}
+      <NumberPad note={consumption.note} amount={consumption.amount}
                  onChange={obj=>onChange(obj)}
                  onOk={onAddConsumption}/>
     </Layout>
