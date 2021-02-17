@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {WiredButton, WiredCalendar, WiredDialog, WiredInput} from 'react-wired-elements';
+import {WiredButton, WiredCalendar, WiredDialog} from 'react-wired-elements';
 
 const NumberPadWrapper=styled.div`
   height: 32vh;
@@ -10,7 +10,7 @@ const NumberPadWrapper=styled.div`
   flex-direction: column;
   align-items: center;
   >.inputs{
-    margin: 6px 10px;
+    margin: 10px 10px 6px 10px;
     display: flex;
     flex-direction: row;
     width: 90vw;
@@ -39,7 +39,7 @@ const NumberPadWrapper=styled.div`
     align-items: center;
     justify-content: space-around;
     >wired-button{
-      width: 16vw;
+      width: 20vw;
       margin:0 2vw;
       display: flex;
       align-items: center;
@@ -60,12 +60,6 @@ type Props={
 const NumberPad:React.FC<Props>=(props)=>{
   let [note,setNote]=useState(props.noteAmountDate.note);
   let output=props.noteAmountDate.amount;
-  const [toggleOpen,setToggleOpen]=useState<boolean>(false);
-  let date=props.noteAmountDate.date;
-
-  const onChangeDate=(date:string)=>{
-    props.onChange({date});
-  }
 
   const onChangeNote=(note:string)=>{
     setNote(note);
@@ -108,10 +102,8 @@ const NumberPad:React.FC<Props>=(props)=>{
       }
       return output + text;
     }else if(text==='完成'){
-      console.log('before');
-      console.log(props.noteAmountDate);
         props.onOk();
-        setNote('')
+        setNote('');
         output='0';
 
     }
@@ -125,37 +117,23 @@ const NumberPad:React.FC<Props>=(props)=>{
          <div className='right'>{`${output}元`}</div>
        </div>
        <div className='buttons' onClick={onChangeAmount}>
-         <WiredButton>&nbsp;1&nbsp;</WiredButton>
-         <WiredButton>&nbsp;2&nbsp;</WiredButton>
-         <WiredButton>&nbsp;3&nbsp;</WiredButton>
-         <WiredButton>&nbsp;4&nbsp;</WiredButton>
-         <WiredButton elevation={2} onClick={()=>setToggleOpen(!toggleOpen)}>日历
-         </WiredButton>
-         <WiredButton>&nbsp;5&nbsp;</WiredButton>
-         <WiredButton>&nbsp;6&nbsp;</WiredButton>
-         <WiredButton>&nbsp;7&nbsp;</WiredButton>
-         <WiredButton>&nbsp;8&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;1&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;2&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;3&nbsp;&nbsp;</WiredButton>
          <WiredButton>删除</WiredButton>
-         <WiredButton>&nbsp;9&nbsp;</WiredButton>
-         <WiredButton>&nbsp;0&nbsp;</WiredButton>
-         <WiredButton>&nbsp;.&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;4&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;5&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;6&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;+&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;7&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;8&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;9&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;-&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;0&nbsp;&nbsp;</WiredButton>
+         <WiredButton>&nbsp;&nbsp;.&nbsp;&nbsp;</WiredButton>
          <WiredButton>清空</WiredButton>
          <WiredButton>完成</WiredButton>
        </div>
-      <WiredDialog elevation={1} zIndex={1} open={toggleOpen}>
-        <div style={{textAlign: 'center'}}>
-          <div>
-            <WiredCalendar bgColor="white" dimmedColor="gray" elevation={1}
-              lineColor="black" locale="en" onSelect={e=>onChangeDate(e.detail.selected)} selectedColor="red" selectedDate={date}/>
-          </div>
-          <br />
-          <div>
-            <WiredButton  onClick={()=>setToggleOpen(!toggleOpen)}>
-              确定
-            </WiredButton>
-          </div>
-        </div>
-      </WiredDialog>
     </NumberPadWrapper>
   )
 }
