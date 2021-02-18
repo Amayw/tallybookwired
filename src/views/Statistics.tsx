@@ -73,14 +73,14 @@ export default function Statistics(){
       <Category category={category} onChange={(category)=>setCategory(category)}/>
       <RecordsWrapper>
         {
-          array.map(records=>(
+          array.map(([date,records])=>(
                 <div className='item'>
-                  <div className='title' key={records[0]}>
-                    <span>{records[0]}</span>
+                  <div className='title' key={date}>
+                    <span>{date}</span>
                   </div>
                   <ul>
                     {
-                      records[1].map(consumption=>(
+                      records.map(consumption=>(
                         <li key={consumption.date}>
                           <div className='left'>
                             <Icon name={getTagIcon(consumption.selectedId)}/>
