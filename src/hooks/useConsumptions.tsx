@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
-type Consumption={
+export type ConsumptionType={
   selectedId:number,
   category:'-'|'+',
   note:string,
@@ -10,7 +10,7 @@ type Consumption={
 }
 
 const useConsumptions=()=>{
-  const [consumptions,setConsumptions]=useState<Consumption[]>([]);
+  const [consumptions,setConsumptions]=useState<ConsumptionType[]>([]);
   useEffect(()=>{
     setConsumptions(JSON.parse(window.localStorage.getItem('reactAllConsumptions')||'[]'));
   },[])
@@ -19,7 +19,7 @@ const useConsumptions=()=>{
     window.localStorage.setItem('reactAllConsumptions',JSON.stringify(consumptions));
   },consumptions)
 
-  const addConsumption=(consumption:Consumption)=>{
+  const addConsumption=(consumption:ConsumptionType)=>{
     if(consumption.amount==='0'){
       return false;
     }
