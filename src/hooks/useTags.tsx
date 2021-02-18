@@ -55,8 +55,14 @@ const useTags=()=>{
   const deleteTag=(id:number)=>{
     setTags(tags.filter((tag:{id:number,icon:string,name:string})=>tag.id!==id));
   }
+  const getTagName=(id:number)=>{
+    return findTag(id).name;
+  }
+  const getTagIcon=(id:number)=>{
+    return findTag(id).icon;
+  }
   return {
-    tags,setTags,findTag,updateTag,deleteTag,addTag
+    tags,setTags,findTag,updateTag,deleteTag,addTag,getTagName,getTagIcon
   }
 }
 

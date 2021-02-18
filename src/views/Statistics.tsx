@@ -39,7 +39,7 @@ const RecordsWrapper=styled.ul`
 export default function Statistics(){
   const [category,setCategory]=useState<'-'|'+'>('-');
   const {consumptions}=useConsumptions();
-  const {tags}=useTags();
+  const {getTagIcon,getTagName}=useTags();
 
 
   return(
@@ -50,10 +50,11 @@ export default function Statistics(){
           consumptions.map(consumption=>(
             <li key={consumption.date}>
               <div className='left'>
-                <Icon name={tags[consumption.selectedId].icon}/>
-                <span>{tags[consumption.selectedId].name}</span>
+                <Icon name={getTagIcon(consumption.selectedId)}/>
+                <span>{getTagName(consumption.selectedId)}</span>
                 <span className='note'>{consumption.note}</span>
               </div>
+              <span>{consumption.date}</span>
               <span>￥{consumption.amount}</span>
             </li>
           ))
