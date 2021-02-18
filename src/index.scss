@@ -30,6 +30,8 @@ body{
   font-family: $font-song;
   font-size: 16px;
   line-height: 1.2;
+  max-width: 500px;
+  margin: 0 auto;
 }
 html {
   overflow: scroll;

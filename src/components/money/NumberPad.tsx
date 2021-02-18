@@ -10,9 +10,11 @@ const NumberPadWrapper=styled.div`
   flex-direction: column;
   align-items: center;
   >.inputs{
-    margin: 10px 10px 6px 10px;
+    height: 4vh;
+    margin: 8px 10px 4px 10px;
     display: flex;
     flex-direction: row;
+    max-width: 460px;
     width: 90vw;
     >.left{
       width: 60vw;
@@ -32,6 +34,8 @@ const NumberPadWrapper=styled.div`
 
   }
   >.buttons{
+    padding: 2px 0;
+    height: 28vh;
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
@@ -39,8 +43,8 @@ const NumberPadWrapper=styled.div`
     align-items: center;
     justify-content: space-around;
     >wired-button{
-      width: 20vw;
-      margin:0 2vw;
+      width: 20%;
+      margin:0 1%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -195,7 +199,7 @@ const NumberPad:React.FC<Props>=(props)=>{
         //判断金额是否为数字，排除'3.'这种情况
         //判断金额四舍五入后是否为0
         if(isResZero(isFloat(output)!)){
-          window.alert('请输入正确的记账金额哦'+'(小数四舍五入精确到小数点后两位哦)'+'~');
+          window.alert('请输入正确的记账金额哦(小数四舍五入精确到小数点后两位哦)~');
           return;
         }
         props.onOk();
