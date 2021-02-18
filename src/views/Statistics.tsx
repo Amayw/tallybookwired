@@ -1,11 +1,10 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import Layout from '../components/Layout';
 import Category from '../components/money/Category';
 import styled from 'styled-components';
 import {useConsumptions} from '../hooks/useConsumptions';
 import Icon from '../components/Icon';
-import {WiredIconButton} from 'react-wired-elements';
 import {useTags} from '../hooks/useTags';
 
 const RecordsWrapper=styled.ul`
@@ -38,23 +37,20 @@ const RecordsWrapper=styled.ul`
 
 
 export default function Statistics(){
+  const [category,setCategory]=useState<'-'|'+'>('-');
   const {consumptions}=useConsumptions();
   const {tags}=useTags();
 
-  const onChange=()=>{
 
-  }
   return(
     <Layout>
-      <Category category={'-'} onChange={(category)=>onChange()}/>
+      <Category category={category} onChange={(category)=>setCategory(category)}/>
       <RecordsWrapper>
         {
           consumptions.map(consumption=>(
             <li key={consumption.date}>
               <div className='left'>
-                {/*<WiredIconButton lineColor='#000'>*/}
-                  <Icon name={tags[consumption.selectedId].icon}></Icon>
-                {/*</WiredIconButton>*/}
+                <Icon name={tags[consumption.selectedId].icon}/>
                 <span>{tags[consumption.selectedId].name}</span>
                 <span className='note'>{consumption.note}</span>
               </div>
