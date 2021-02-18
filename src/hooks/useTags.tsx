@@ -42,6 +42,10 @@ const useTags=()=>{
 
 
   const addTag=(obj:{id:number,icon:string,name:string})=>{
+    if(obj.name.length>4){
+      window.alert('标签名的长度不能超过四个字符哦~');
+      return;
+    }
     setTags([...tags,obj]);
   }
 

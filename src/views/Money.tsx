@@ -19,7 +19,7 @@ const defaultFormData:Consumption={
   category:'-',
   note:'',
   amount:'0',
-  date:(new Date()).toString().split(' ').slice(1,4).join(',')
+  date:(new Date()).toString()
 }
 
 const Money:React.FC=()=>{

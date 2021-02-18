@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {WiredButton} from 'react-wired-elements';
 
 const CategoryWrapper=styled.div`
+  background-color:#fff;
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -27,7 +27,7 @@ const useConsumptions=()=>{
     return true;
   }
 
-  return {addConsumption}
+  return {consumptions,addConsumption}
 }
 
 export {useConsumptions};
