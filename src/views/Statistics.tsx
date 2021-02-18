@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import {useConsumptions} from '../hooks/useConsumptions';
 import Icon from '../components/Icon';
 import {useTags} from '../hooks/useTags';
+import day from 'dayjs'
 
 const RecordsWrapper=styled.ul`
   height: 84vh;
@@ -54,7 +55,7 @@ export default function Statistics(){
                 <span>{getTagName(consumption.selectedId)}</span>
                 <span className='note'>{consumption.note}</span>
               </div>
-              <span>{consumption.date}</span>
+              <span>{day(consumption.date).format('YYYY年MM月DD日')}</span>
               <span>￥{consumption.amount}</span>
             </li>
           ))
