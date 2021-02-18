@@ -13,7 +13,7 @@ const RecordsWrapper=styled.ul`
   background-color:#fff;
   >li{
     background-color: #f4f7fc;
-    margin: 8px;
+    margin: 0 8px 8px 8px;
     padding: 8px;
     border-radius: 8px;
     display: flex;
@@ -41,14 +41,14 @@ export default function Statistics(){
   const [category,setCategory]=useState<'-'|'+'>('-');
   const {consumptions}=useConsumptions();
   const {getTagIcon,getTagName}=useTags();
-
+  const selectedCategory=consumptions.filter(consumption=>consumption.category===category);
 
   return(
     <Layout>
       <Category category={category} onChange={(category)=>setCategory(category)}/>
       <RecordsWrapper>
         {
-          consumptions.map(consumption=>(
+          selectedCategory.map(consumption=>(
             <li key={consumption.date}>
               <div className='left'>
                 <Icon name={getTagIcon(consumption.selectedId)}/>
