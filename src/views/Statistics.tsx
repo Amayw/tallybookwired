@@ -7,6 +7,7 @@ import {ConsumptionType, useConsumptions} from '../hooks/useConsumptions';
 import Icon from '../components/Icon';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs'
+import {NavLink} from 'react-router-dom';
 
 const RecordsWrapper=styled.div`
   height: 84vh;
@@ -42,7 +43,17 @@ const RecordsWrapper=styled.div`
   }
   }
 `
-
+const NoRecordsWrapper=styled.div`
+  background-color:#fdfdfd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 84vh;
+  >div>a{
+    color:#f7d26a;
+    font-weight: 800;
+  }
+`
 
 export default function Statistics(){
   const [category,setCategory]=useState<'-'|'+'>('-');
@@ -70,45 +81,40 @@ export default function Statistics(){
   return(
     <Layout>
       <Category category={category} onChange={(category)=>setCategory(category)}/>
-      <RecordsWrapper>
-        {
-          array.map(([date,records])=>(
-                <div className='item' key={date}>
-                  <div className='title' key={date}>
-                    <span>{date}</span>
-                  </div>
-                  <ul>
-                    {
-                      records.map(consumption=>(
-                        <li key={consumption.date}>
-                          <div className='left'>
-                            <Icon name={getTagIcon(consumption.selectedId)}/>
-                            <span>{getTagName(consumption.selectedId)}</span>
-                            <span className='note'>{consumption.note}</span>
-                          </div>
-                          <span>￥{consumption.amount}</span>
-                        </li>
-                      ))
-                    }
-                  </ul>
+      {array.length!==0?(
+        <RecordsWrapper>
+          {
+            array.map(([date,records])=>(
+              <div className='item' key={date}>
+                <div className='title' key={date}>
+                  <span>{date}</span>
                 </div>
-          ))
-        }
-      </RecordsWrapper>
-      {/*<RecordsWrapper>*/}
-      {/*  {*/}
-      {/*    selectedCategory.map(consumption=>(*/}
-      {/*      <li key={consumption.date}>*/}
-      {/*        <div className='left'>*/}
-      {/*          <Icon name={getTagIcon(consumption.selectedId)}/>*/}
-      {/*          <span>{getTagName(consumption.selectedId)}</span>*/}
-      {/*          <span className='note'>{consumption.note}</span>*/}
-      {/*        </div>*/}
-      {/*        <span>￥{consumption.amount}</span>*/}
-      {/*      </li>*/}
-      {/*    ))*/}
-      {/*  }*/}
-      {/*</RecordsWrapper>*/}
+                <ul>
+                  {
+                    records.map(consumption=>(
+                      <li key={consumption.date}>
+                        <div className='left'>
+                          <Icon name={getTagIcon(consumption.selectedId)}/>
+                          <span>{getTagName(consumption.selectedId)}</span>
+                          <span className='note'>{consumption.note}</span>
+                        </div>
+                        <span>￥{consumption.amount}</span>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            ))
+          }
+        </RecordsWrapper>
+      ):(
+        <NoRecordsWrapper>
+          <div>快去
+            <NavLink activeClassName='is-active' to="/money">记一笔</NavLink>
+            吧</div>
+        </NoRecordsWrapper>
+      )}
+
     </Layout>
   )
 }
