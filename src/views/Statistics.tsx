@@ -14,7 +14,7 @@ const RecordsWrapper=styled.div`
   overflow: auto;
   >.item{
     >.title{
-      margin: 0 8px 8px 8px;
+      margin: 16px 8px 8px 8px;
       color:hotpink;
     }
     >ul>li{
@@ -51,7 +51,7 @@ export default function Statistics(){
   const selectedCategory=consumptions.filter(consumption=>consumption.category===category);
 
   const hash:{[key:string]:ConsumptionType[]}={};
-  selectedCategory.map(consumption=>{
+  selectedCategory.forEach(consumption=>{
     const key=day(consumption.date).format('YYYY年MM月DD日');
     if(!(key in hash)){
       hash[key]=[];
@@ -66,7 +66,6 @@ export default function Statistics(){
     return 0;
 })
 
-  console.log(array);
 
   return(
     <Layout>
@@ -74,7 +73,7 @@ export default function Statistics(){
       <RecordsWrapper>
         {
           array.map(([date,records])=>(
-                <div className='item'>
+                <div className='item' key={date}>
                   <div className='title' key={date}>
                     <span>{date}</span>
                   </div>
