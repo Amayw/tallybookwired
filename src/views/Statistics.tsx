@@ -8,6 +8,7 @@ import Icon from '../components/Icon';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs'
 import {NavLink} from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const RecordsWrapper=styled.div`
   height: 84vh;
@@ -63,7 +64,7 @@ export default function Statistics(){
 
   const hash:{[key:string]:ConsumptionType[]}={};
   selectedCategory.forEach(consumption=>{
-    const key=day(consumption.date).format('YYYY年MM月DD日');
+    const key=day(consumption.date).format('YYYY-MM-DD');
     if(!(key in hash)){
       hash[key]=[];
     }
@@ -77,7 +78,23 @@ export default function Statistics(){
     return 0;
 })
 
-
+  function beauty(title: string){
+    const day=dayjs(title);
+    const now=dayjs();
+    if(day.isSame(now,'day')){
+      return '今天';
+    }else if(day.isSame(now.subtract(1,'day'),'day')){
+      return '昨天';
+    }else if(day.isSame(now.subtract(2,'day'),'day')){
+      return '前天'
+    }else{
+      if(day.isSame(now,'year')){
+        return day.format('MM月DD日');
+      }else{
+        return day.format('YYYY年MM月D日');
+      }
+    }
+  }
   return(
     <Layout>
       <Category category={category} onChange={(category)=>setCategory(category)}/>
@@ -85,14 +102,14 @@ export default function Statistics(){
         <RecordsWrapper>
           {
             array.map(([date,records])=>(
-              <div className='item' key={date}>
-                <div className='title' key={date}>
-                  <span>{date}</span>
+              <div className='item'  key={date}>
+                <div className='title'>
+                  <span>{beauty(date)}</span>
                 </div>
                 <ul>
                   {
                     records.map(consumption=>(
-                      <li key={consumption.date}>
+                      <li key={JSON.stringify(consumption)}>
                         <div className='left'>
                           <Icon name={getTagIcon(consumption.selectedId)}/>
                           <span>{getTagName(consumption.selectedId)}</span>

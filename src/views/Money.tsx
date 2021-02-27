@@ -12,14 +12,14 @@ type Consumption={
   category:'-'|'+',
   note:string,
   amount:string,
-  date:string
+  date:Date
 }
 const defaultFormData:Consumption={
-  selectedId:8,
+  selectedId:1,
   category:'-',
   note:'',
   amount:'0',
-  date:(new Date()).toString()
+  date:new Date()
 }
 
 const Money:React.FC=()=>{
