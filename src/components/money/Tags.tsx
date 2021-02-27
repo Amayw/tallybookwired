@@ -6,7 +6,7 @@ import {WiredIconButton} from 'react-wired-elements';
 
 const TagsWrapper=styled.div`
   >ul{
-    height: 52vh;
+    height: 50vh;
     display: flex;
     flex-direction: row;
     align-items: center;

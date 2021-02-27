@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import {WiredButton} from 'react-wired-elements';
 
 const NumberPadWrapper=styled.div`
-  height: 32vh;
+  height: 34vh;
   overflow: hidden;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   >.inputs{
-    height: 4vh;
+    height: 5vh;
     margin: 8px 10px 4px 10px;
     display: flex;
     flex-direction: row;
@@ -21,15 +21,20 @@ const NumberPadWrapper=styled.div`
       padding: 8px;
       border: none;
       outline: none;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
     >.right{
-      width: 30vw;
-      padding: 4px;
+      width: 31vw;
+      padding: 8px;
       background-color:#fff;
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       flex-wrap: nowrap;
       overflow:auto;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
     }
 
   }
