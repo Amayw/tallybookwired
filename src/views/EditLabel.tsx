@@ -164,6 +164,10 @@ const EditLabel:React.FC=()=>{
     let label=findTag(parseInt(id));
 
     const onChangeTagName=(e:ChangeEvent<HTMLInputElement>)=>{
+      if(e.target.value.length>4){
+        window.alert('标签名的长度不能超过四个字符哦~');
+        return;
+      }
       updateTag({...label,name:e.target.value});
     }
     const onChangeSvg=(icon:string)=>{
@@ -190,7 +194,7 @@ const EditLabel:React.FC=()=>{
               <EditWrapper>
                 <div className='left'>
                   <Icon name={label&&label.icon}/>
-                  <input placeholder='标签名' value={label?label.name:'标签名'} onChange={e=>onChangeTagName(e)}/>
+                  <input placeholder='标签名' defaultValue={label?label.name:''} onBlur={e=>onChangeTagName(e)}/>
                 </div>
                 <div className='delete' onClick={()=>onDeleteTag()}>
                   <Icon name='icon-shanchu'/>

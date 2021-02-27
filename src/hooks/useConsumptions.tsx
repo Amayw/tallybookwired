@@ -6,7 +6,7 @@ export type ConsumptionType={
   category:'-'|'+',
   note:string,
   amount:string,
-  date:string
+  date:Date
 }
 
 const useConsumptions=()=>{
